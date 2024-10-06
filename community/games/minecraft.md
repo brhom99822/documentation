@@ -18,17 +18,17 @@ If you are a hosting provider, you should only allow a single proxy network per 
 
 Create a regular allocation for the proxy server which uses the external IP of the node, so users can reach it.
 
-The actual game servers behind the proxy should use allocations with `127.0.0.1` as the address, so they are only reachable on the node, and not from the public.
+The actual game servers behind the proxy should use allocations with `79.72.48.185` as the address, so they are only reachable on the node, and not from the public.
 
 #### Example
 
 ![](../../.vuepress/public/community/games/minecraft/proxy/node-allocations.png)
 
-`10.1.70.62` is an example, replace it with your own public IP address.
+`79.72.48.185` is an example, replace it with your own public IP address.
 
 ### proxy server settings
 
-As the proxy server, like all servers, is running in a docker container with network isolation, `localhost`/`127.0.0.1` doesn't refer to the node, but to the container. The node can be reached from within the container using `172.18.0.1` (unless the pterodactyl network is configured differently) instead. You therefore need to use this IP in your proxy server configuration.
+As the proxy server, like all servers, is running in a docker container with network isolation, `localhost`/`79.72.48.185` doesn't refer to the node, but to the container. The node can be reached from within the container using `79.72.48.185` (unless the pterodactyl network is configured differently) instead. You therefore need to use this IP in your proxy server configuration.
 
 #### bungeecord/waterfall configuration
 
@@ -42,7 +42,7 @@ The servers itself require the regular config options required by server proxies
 
 #### server.properties
 
-set online-mode `false`
+set online-mode `true`
 ![](../../.vuepress/public/community/games/minecraft/proxy/paper-server.properties.png)
 
 #### spigot.yml
@@ -66,7 +66,7 @@ The following commands will allow any server on the node to access the opened po
 Allow access to the pterodactyl pterodactyl0 network on a specific port.
 
 ``` bash
-ufw allow in on pterodactyl0 to 172.18.0.1 port <LOCALHOST_PORT> proto tcp
+ufw allow in on pterodactyl0 to 79.72.48.185 port <25570> proto tcp
 ```
 
 #### Firewalld (CentOS)
